@@ -12,19 +12,17 @@ from flask import Flask, redirect, render_template, request, url_for
 from PIL import Image
 
 app = Flask(
-    __name__, static_url_path='/static', static_folder="./templates/static"
+    import_name=__name__,
+    static_url_path='/static',
+    static_folder="./templates/static",
 )
-print(app.url_map)
+
+print(app.static_folder)
 print(app.static_url_path)
 
 
 # Paths
 project_path = Path(__file__).parent
-# print(project_path)
-
-
-# html = project_path /
-# print(html.is_file())
 
 
 @app.route('/')
@@ -49,20 +47,23 @@ def convert():
         format = request.form.get("format")
 
         #
-        outputimage, x = file.filename.split('.')
+        input_filename, x = file.filename.split('.')
+        print(input_filename)
         format = format.lower()
-        outputimage = outputimage + "." + format
+        output_filename = f'{input_filename}.{format}'
 
         with Image.open(file) as image:
-            path = Path('static/images/') / outputimage
-            image.convert('RGB').save(fp=path)
+            file_path = Path(app.static_folder) / output_filename
+            print(f'sssss {file_path}')
 
-            # os.rename(outputimage, path)
-            # filepath = 'images/' + outputimage
-            image_url = url_for('static', filename=path)
-            print(image_url)
+            # Convert
+            image.convert('RGB').save(fp=file_path)
 
-        return render_template("convert.html", image_url=path)
+            # URL
+            image_url = url_for('static', filename=output_filename)
+            print(f'URL da imagem é {image_url}')            
+
+        return render_template("convert.html", image_url=image_url)
 
     return redirect("/")
 
