@@ -6,14 +6,12 @@ _summary_
 """
 
 
-import os
 from pathlib import Path
 
 from flask import Flask, redirect, render_template, request, url_for
 from PIL import Image
 
 app = Flask(__name__)
-
 
 
 # Paths
@@ -27,11 +25,23 @@ print(project_path)
 
 @app.route('/')
 def hello():
+    """
+    _summary_
+
+    :return: _description_
+    :rtype: _type_
+    """
     return render_template("index.html")
 
 
 @app.route("/convert", methods=["POST", "GET"])
 def convert():
+    """
+    _summary_
+
+    :return: _description_
+    :rtype: _type_
+    """
     if request.method == "POST":
         file = request.files["image"]
         format = request.form.get("format")
