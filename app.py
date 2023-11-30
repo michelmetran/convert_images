@@ -11,12 +11,16 @@ from pathlib import Path
 from flask import Flask, redirect, render_template, request, url_for
 from PIL import Image
 
-app = Flask(__name__, static_url_path='', static_folder="./static")
+app = Flask(
+    __name__, static_url_path='/static', static_folder="./templates/static"
+)
+print(app.url_map)
+print(app.static_url_path)
 
 
 # Paths
 project_path = Path(__file__).parent
-print(project_path)
+# print(project_path)
 
 
 # html = project_path /
@@ -28,7 +32,7 @@ def hello():
     """
     Renderiza o index.html
 
-    :return: _description_    
+    :return: _description_
     """
     return render_template("index.html")
 
