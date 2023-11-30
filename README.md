@@ -1,2 +1,9 @@
-# convert_images
-Aplicativo em Flask para converter imagens
+# Flask
+
+Aplicativo para converter imagens.
+
+- https://stackoverflow.com/questions/23327293/flask-raises-templatenotfound-error-even-though-template-file-exists
+- https://bootstrapious.com/p/bootstrap-image-upload
+
+
+https://fly.io/docs/languages-and-frameworks/python/
