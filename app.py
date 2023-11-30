@@ -15,7 +15,6 @@ from PIL import Image
 app = Flask(__name__)
 
 
-os.get_terminal_size()
 
 # Paths
 project_path = Path(__file__).parent
