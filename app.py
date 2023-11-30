@@ -45,6 +45,7 @@ def convert():
     if request.method == "POST":
         file = request.files["image"]
         format = request.form.get("format")
+        print(f'Arquivo: {file}')
 
         #
         input_filename, x = file.filename.split('.')
@@ -54,14 +55,15 @@ def convert():
 
         with Image.open(file) as image:
             file_path = Path(app.static_folder) / output_filename
-            print(f'sssss {file_path}')
+            file_path = Path('tmp') / output_filename
+            print(f'Arquivo Convertido {file_path}')
 
             # Convert
             image.convert('RGB').save(fp=file_path)
 
             # URL
             image_url = url_for('static', filename=output_filename)
-            print(f'URL da imagem é {image_url}')            
+            print(f'URL da imagem é {image_url}')
 
         return render_template("convert.html", image_url=image_url)
 
