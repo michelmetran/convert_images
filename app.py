@@ -11,7 +11,7 @@ from pathlib import Path
 from flask import Flask, redirect, render_template, request, url_for
 from PIL import Image
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='', static_folder="./static")
 
 
 # Paths
@@ -36,10 +36,9 @@ def hello():
 @app.route("/convert", methods=["POST", "GET"])
 def convert():
     """
-    _summary_
+    Renderiza o Resto
 
     :return: _description_
-    :rtype: _type_
     """
     if request.method == "POST":
         file = request.files["image"]
