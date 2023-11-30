@@ -26,10 +26,9 @@ print(project_path)
 @app.route('/')
 def hello():
     """
-    _summary_
+    Renderiza o index.html
 
-    :return: _description_
-    :rtype: _type_
+    :return: _description_    
     """
     return render_template("index.html")
 
